@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'java-library'
+    id 'checkstyle'
 }
 
 group 'AT10'
@@ -18,9 +20,34 @@ dependencies {
     compile group: 'org.testng', name: 'testng', version: '6.14.3'
     compile group: 'io.cucumber', name: 'cucumber-java', version: '4.7.1'
     compile group: 'io.cucumber', name: 'cucumber-testng', version: '4.7.1'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile group: 'net.masterthought', name: 'cucumber-reporting', version: '4.4.0'
+}
+
+// CheckStyle configuration
+checkstyle {
+    toolVersion = '8.1'
 }
 
 test {
     useTestNG();
+}
+
+// Cucumber Configuration Task.
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'gradle.cucumber', 'src/test/resources']
+        }
+    }
 }
 
