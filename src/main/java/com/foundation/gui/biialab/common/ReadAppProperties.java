@@ -1,20 +1,18 @@
 package com.foundation.gui.biialab.common;
 
-import core.utils.Log;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 /**
- * This class is used for implement the read og the properties file.
+ * This class implements the read .
  *
- * @author Josue Rodriguez Garcia.
- * @version 0.0.1
+ * @author Andres Burgos.
+ * @version 1.0
  */
 public final class ReadAppProperties {
     private static final String URL_LOGIN = "url_login";
-    private static final String PROPERTIES_FILE = "i2celectronica.properties";
+    private static final String PROPERTIES_FILE = "biialab.properties";
     private static ReadAppProperties readAppProperties;
     private Properties properties;
     private FileInputStream inputStream;
@@ -37,7 +35,7 @@ public final class ReadAppProperties {
             properties = new Properties();
             properties.load(inputStream);
         } catch (IOException e) {
-            Log.getInstance().getLog().error(e);
+            e.printStackTrace();
         }
         return properties;
     }

@@ -20,4 +20,8 @@ public abstract class Base {
         this.webDriver = WebDriverManager.getInstance().getWebDriver();
         PageFactory.initElements(webDriver, this);
     }
+
+    public WebDriver getWebDriver() {
+        return webDriver;
+    }
 }

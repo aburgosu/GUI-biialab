@@ -2,36 +2,36 @@ package com.foundation.gui.biialab.ui.pages;
 
 
 import com.foundation.gui.biialab.common.ReadAppProperties;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * This class is use for implement the login to Page.
- *
- * @author Andres Burgos
- * @version 1.0
- */
 public class Login extends Base {
-    @FindBy(id = "email")
+
+    @FindBy(css = ".btn-login")
+    private WebElement loginButton;
+
+    @FindBy(css = "input[placeholder='Email']")
     private WebElement emailField;
 
-    @FindBy(id = "passwd")
+    @FindBy(css = "input[placeholder='Contraseña']")
     private WebElement passwordField;
 
-    @FindBy(css = "#SubmitLogin > span")
+    @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitLoginButton;
 
-    /**
-     * This method is used to get the user and password from the properties file
-     * set the fields and login in to account.
-     *
-     * @param user  The parameter user defines a user.
-     * @param password The password email defines a password.
-     */
-    public void login(final String user, final String password) {
-        emailField.sendKeys(ReadAppProperties.getInstance().getProperty(user));
+    public void login(String user, String password) {
+        WebDriver driver = super.getWebDriver();
+        driver.get(ReadAppProperties.getInstance().getProperty("url_login"));
+        loginButton.click();
         passwordField.sendKeys(ReadAppProperties.getInstance().getProperty(password));
+        emailField.sendKeys(ReadAppProperties.getInstance().getProperty(user));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         submitLoginButton.click();
-
     }
 }
