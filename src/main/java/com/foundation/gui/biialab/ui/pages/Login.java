@@ -5,7 +5,7 @@ import com.foundation.gui.biialab.common.ReadAppProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class Login extends Base {
 
@@ -27,11 +27,11 @@ public class Login extends Base {
         loginButton.click();
         passwordField.sendKeys(ReadAppProperties.getInstance().getProperty(password));
         emailField.sendKeys(ReadAppProperties.getInstance().getProperty(user));
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         submitLoginButton.click();
     }
 }
