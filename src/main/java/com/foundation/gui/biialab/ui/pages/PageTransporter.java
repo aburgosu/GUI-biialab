@@ -39,7 +39,17 @@ public class PageTransporter {
      * @return a Login.
      */
     public static ProfilePage goToProfile() {
-        goToUrl("https://biialab.org/es/account/my-account");
+        goToUrl("https://biialab.org/es/account/my-account-edit");
         return new ProfilePage();
+    }
+
+    /**
+     * This method is used for go to SearchCourse Page.
+     *
+     * @return a SearchCoursePage.
+     */
+    public static SearchCoursePage goToSearchCoursePage() {
+        goToUrl("https://biialab.org/es/cursos");
+        return new SearchCoursePage();
     }
 }
