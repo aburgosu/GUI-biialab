@@ -22,7 +22,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Andres Burgos
  * @version 1.0.0
  */
-public class Chrome {
+public class Chrome implements IBrowser {
 
   /**
    * Initializes Chrome driver.

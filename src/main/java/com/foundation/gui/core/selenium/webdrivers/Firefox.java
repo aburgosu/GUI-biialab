@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class Firefox {
+public class Firefox implements IBrowser {
 
     public WebDriver initDriver() {
         FirefoxDriverManager.getInstance().version("0.24.0").setup();
